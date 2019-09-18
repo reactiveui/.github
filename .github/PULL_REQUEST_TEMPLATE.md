@@ -1,3 +1,5 @@
+<!-- Please be sure to read the [Contribute](https://github.com/reactiveui/reactiveui#contribute) section of the README -->
+
 **What kind of change does this PR introduce?**
 <!-- Bug fix, feature, docs update, ... -->
 
