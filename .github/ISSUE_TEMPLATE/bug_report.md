@@ -41,8 +41,9 @@ Provide the steps to reproduce the behavior:
 **Environment**
 <!-- Please complete the following information. -->
 - OS:       <!-- [e.g. iOS] -->
-- Version   <!-- [e.g. 22] -->
 - Device:   <!-- [e.g. iPhone6] -->
+- Version:   <!-- [e.g. 22] -->
+- Working Version: <!-- [e.g. 22] -->
 
 **Additional context**
 <!-- Add any other context about the problem here. -->
