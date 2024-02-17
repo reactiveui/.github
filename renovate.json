@@ -1,8 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
-    ":automergePatch",
+    "config:recommended",
     ":separateMajorReleases",
     ":combinePatchMinorReleases",
     ":enableVulnerabilityAlertsWithLabel(:old_key: security)"
