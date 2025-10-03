@@ -4,13 +4,38 @@
     "config:recommended",
     ":separateMajorReleases",
     ":combinePatchMinorReleases",
-    ":enableVulnerabilityAlertsWithLabel(:old_key: security)"
+    ":enableVulnerabilityAlertsWithLabel(security)",
+    "group:dotnetMonorepo",
+    "group:nugetMonorepo"
   ],
   "prHourlyLimit": 10,
   "prConcurrentLimit": 10,
-  "stabilityDays": 10,
+
+  // Wait ~3 days after release before updating
+  "minimumReleaseAge": "3 days",
+
   "recreateWhen": "never",
-  "labels": [
-    "Dependency Management"
+  "labels": ["Dependency Management"],
+
+  "packageRules": [
+    {
+      "description": "Group Xamarin & AndroidX NuGets",
+      "matchManagers": ["nuget"],
+      "matchPackagePatterns": [
+        "^Xamarin\\.",
+        "^Xamarin\\.AndroidX\\.",
+        "^Xamarin\\.Android\\.Support\\."
+      ],
+      "groupName": "Xamarin & AndroidX"
+    },
+    {
+      "description": "Group Windows App SDK + Windows SDK Build Tools",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": [
+        "Microsoft.WindowsAppSDK",
+        "Microsoft.Windows.SDK.BuildTools"
+      ],
+      "groupName": "Windows SDK & App SDK"
+    }
   ]
 }
