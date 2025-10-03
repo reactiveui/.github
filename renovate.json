@@ -11,7 +11,6 @@
   "prHourlyLimit": 10,
   "prConcurrentLimit": 10,
 
-  // Wait ~3 days after release before updating
   "minimumReleaseAge": "3 days",
 
   "recreateWhen": "never",
