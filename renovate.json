@@ -35,6 +35,17 @@
         "Microsoft.Windows.SDK.BuildTools"
       ],
       "groupName": "Windows SDK & App SDK"
+    },
+    {
+      "description": "Group Reactive Extensions (Rx.NET) packages",
+      "matchManagers": ["nuget"],
+      "groupName": "Rx.NET (System.Reactive)",
+      "matchPackagePatterns": [
+        "^System\\.Reactive(\\.|$)",
+        "^Microsoft\\.Reactive\\.",
+        "^System\\.Interactive(\\.|$)",
+        "^System\\.Linq\\.Async(\\.|$)"
+      ]
     }
   ]
 }
