@@ -46,6 +46,48 @@
         "^System\\.Interactive(\\.|$)",
         "^System\\.Linq\\.Async(\\.|$)"
       ]
-    }
+    },
+    {
+      "description": "Group .NET test frameworks (xUnit + NUnit + Test SDK)",
+      "matchManagers": ["nuget"],
+      "matchPackagePatterns": [
+        "^xunit(\\.|$)",
+        "^NUnit",
+        "^Verify\\.",
+        "^Microsoft\\.NET\\.Test\\.Sdk$",
+        "^coverlet\\."
+      ],
+      "groupName": ".NET test stack"
+    },
+    {
+      "description": "Group Refit packages",
+      "matchManagers": ["nuget"],
+      "groupName": "Refit",
+      "matchPackagePatterns": ["^Refit(\\.|$)"]
+    },
+    {
+      "description": "Group ReactiveUI family",
+      "matchManagers": ["nuget"],
+      "groupName": "ReactiveUI",
+      "matchPackagePatterns": ["^ReactiveUI(\\.|$)"]
+    },
+    {
+      "description": "Group Avalonia UI ecosystem (incl. Avalonia.ReactiveUI)",
+      "matchManagers": ["nuget"],
+      "groupName": "Avalonia",
+      "matchPackagePatterns": ["^Avalonia(\\.|$)"]
+    },
+    {
+      "description": "Group Uno Platform packages",
+      "matchManagers": ["nuget"],
+      "groupName": "Uno Platform",
+      "matchPackagePatterns": ["^Uno(\\.|$)"]
+    },
+    {
+      "description": "Group Splat packages",
+      "matchManagers": ["nuget"],
+      "groupName": "Splat",
+      "matchPackagePatterns": ["^Splat(\\.|$)"]
+    },
   ]
 }
