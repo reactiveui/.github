@@ -89,5 +89,15 @@
       "groupName": "Splat",
       "matchPackagePatterns": ["^Splat(\\.|$)"]
     },
+    {
+      "description": "Group Zensical / MkDocs ecosystem (pip)",
+      "matchManagers": ["pip_requirements"],
+      "groupName": "Zensical & MkDocs",
+      "matchPackagePatterns": [
+        "^zensical(\\.|$|-)",
+        "^mkdocs(\\.|$|-)",
+        "^pymdown-extensions$"
+      ]
+    }
   ]
 }
