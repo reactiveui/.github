@@ -90,6 +90,12 @@
       "matchPackagePatterns": ["^Splat(\\.|$)"]
     },
     {
+      "description": "Group NuGet client libraries (NuGet/NuGet.Client family)",
+      "matchManagers": ["nuget"],
+      "groupName": "NuGet client",
+      "matchPackagePatterns": ["^NuGet\\."]
+    },
+    {
       "description": "Group Zensical / MkDocs ecosystem (pip)",
       "matchManagers": ["pip_requirements"],
       "groupName": "Zensical & MkDocs",
