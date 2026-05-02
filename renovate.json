@@ -27,16 +27,7 @@
       ],
       "groupName": "Xamarin & AndroidX"
     },
-    {
-      "description": "Group Windows App SDK + Windows SDK Build Tools",
-      "matchManagers": ["nuget"],
-      "matchPackageNames": [
-        "Microsoft.WindowsAppSDK",
-        "Microsoft.Windows.SDK.BuildTools"
-      ],
-      "groupName": "Windows SDK & App SDK"
-    },
-    {
+{
       "description": "Group Reactive Extensions (Rx.NET) packages",
       "matchManagers": ["nuget"],
       "groupName": "Rx.NET (System.Reactive)",
@@ -94,6 +85,90 @@
       "matchManagers": ["nuget"],
       "groupName": "NuGet client",
       "matchPackagePatterns": ["^NuGet\\."]
+    },
+    {
+      "description": "Group Microsoft.Extensions.* and Microsoft.Bcl.* (lockstep with .NET runtime cadence)",
+      "matchManagers": ["nuget"],
+      "groupName": "Microsoft.Extensions",
+      "matchPackagePatterns": [
+        "^Microsoft\\.Extensions\\.",
+        "^Microsoft\\.Bcl\\."
+      ]
+    },
+    {
+      "description": "Group Microsoft.AspNetCore.* (lockstep via $(AspNetVersion))",
+      "matchManagers": ["nuget"],
+      "groupName": "ASP.NET Core",
+      "matchPackagePatterns": ["^Microsoft\\.AspNetCore\\."]
+    },
+    {
+      "description": "Group .NET MAUI packages (lockstep via $(MauiVersion))",
+      "matchManagers": ["nuget"],
+      "groupName": ".NET MAUI",
+      "matchPackagePatterns": ["^Microsoft\\.Maui(\\.|$)"]
+    },
+    {
+      "description": "Group Roslyn (Microsoft.CodeAnalysis.*) packages",
+      "matchManagers": ["nuget"],
+      "groupName": "Roslyn (Microsoft.CodeAnalysis)",
+      "matchPackagePatterns": ["^Microsoft\\.CodeAnalysis(\\.|$)"]
+    },
+    {
+      "description": "Group Microsoft.Testing.Platform / Extensions (move together)",
+      "matchManagers": ["nuget"],
+      "groupName": "Microsoft.Testing",
+      "matchPackagePatterns": ["^Microsoft\\.Testing\\."]
+    },
+    {
+      "description": "Group SourceLink providers",
+      "matchManagers": ["nuget"],
+      "groupName": "SourceLink",
+      "matchPackagePatterns": ["^Microsoft\\.SourceLink\\."]
+    },
+    {
+      "description": "Group Microsoft App Center SDK",
+      "matchManagers": ["nuget"],
+      "groupName": "App Center",
+      "matchPackagePatterns": ["^Microsoft\\.AppCenter(\\.|$)"]
+    },
+    {
+      "description": "Group Akavache packages (lockstep release versions)",
+      "matchManagers": ["nuget"],
+      "groupName": "Akavache",
+      "matchPackagePatterns": ["^Akavache(\\.|$)"]
+    },
+    {
+      "description": "Group SQLitePCLRaw bundles & providers",
+      "matchManagers": ["nuget"],
+      "groupName": "SQLitePCLRaw",
+      "matchPackagePatterns": ["^SQLitePCLRaw(\\.|$)"]
+    },
+    {
+      "description": "Group Prism.* packages",
+      "matchManagers": ["nuget"],
+      "groupName": "Prism",
+      "matchPackagePatterns": ["^Prism(\\.|$)"]
+    },
+    {
+      "description": "Group TUnit packages",
+      "matchManagers": ["nuget"],
+      "groupName": "TUnit",
+      "matchPackagePatterns": ["^TUnit(\\.|$)"]
+    },
+    {
+      "description": "Group Roslynator analyzers",
+      "matchManagers": ["nuget"],
+      "groupName": "Roslynator",
+      "matchPackagePatterns": ["^Roslynator(\\.|$)"]
+    },
+    {
+      "description": "Group Microsoft.Windows.* (WindowsAppSDK, SDK build tools, CsWinRT)",
+      "matchManagers": ["nuget"],
+      "groupName": "Microsoft.Windows",
+      "matchPackagePatterns": [
+        "^Microsoft\\.Windows\\.",
+        "^Microsoft\\.WindowsAppSDK$"
+      ]
     },
     {
       "description": "Group Zensical / MkDocs ecosystem (pip)",

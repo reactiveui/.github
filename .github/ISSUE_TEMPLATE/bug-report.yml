@@ -6,24 +6,33 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Please note although we can't commit to any timeline, priority will be given to those who are [Contributors](https://github.com/reactiveui/ReactiveUI#contribute ) to the project.
+        Thanks for taking the time to file a bug report. Please read our [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening an issue. Although we can't commit to a timeline, priority is given to [Contributors](https://www.reactiveui.net/contribute/index.html) to the project.
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before opening an issue.
+      options:
+        - label: I have searched [open](https://github.com/reactiveui/ReactiveUI/issues) and [closed](https://github.com/reactiveui/ReactiveUI/issues?q=is%3Aissue+is%3Aclosed) issues for duplicates.
+          required: true
+        - label: I am using the latest stable release.
+          required: true
   - type: textarea
     id: description
     attributes:
       label: Describe the bug 🐞
       description: A clear and concise description of what the bug is.
-      value: "A bug happened!"
     validations:
       required: true
   - type: textarea
     id: reproduce-steps
     attributes:
-      label: Step to reproduce
-      description: "Steps to reproduce the behavior:"
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior.
       value: |
         1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
+        2. Click on '...'
+        3. Scroll down to '...'
         4. See error
     validations:
       required: true
@@ -31,10 +40,8 @@ body:
     id: reproduce-repository
     attributes:
       label: Reproduction repository
-      description: "Simple repository representing the bug"
-      placeholder: https://github.com/reactiveui/ReactiveUI
-      value: |
-        https://github.com/reactiveui/ReactiveUI
+      description: A minimal repository that reproduces the bug.
+      placeholder: https://github.com/your-username/repro
     validations:
       required: false
   - type: textarea
@@ -42,14 +49,13 @@ body:
     attributes:
       label: Expected behavior
       description: A clear and concise description of what you expected to happen.
-      value: This should happen...
     validations:
       required: true
   - type: textarea
     id: screenshots
     attributes:
       label: Screenshots 🖼️
-      description: If applicable, add screenshots to help explain your problem.
+      description: If applicable, add screenshots or recordings to help explain your problem.
     validations:
       required: false
   - type: dropdown
@@ -58,24 +64,43 @@ body:
       label: IDE
       multiple: true
       options:
+        - Visual Studio 2026
         - Visual Studio 2022
-        - Visual Studio 2019
-        - Visual Studio 2017
-        - Visual Studio for Mac
-        - Rider Windows
-        - Rider macOS
+        - JetBrains Rider
         - Visual Studio Code
+        - Cursor
+        - Other
+  - type: dropdown
+    id: dotnet-version
+    attributes:
+      label: .NET version
+      multiple: true
+      options:
+        - .NET 10
+        - .NET 9
+        - .NET Framework 4.8.1
+        - .NET Framework 4.8
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: target-framework
+    attributes:
+      label: Target framework(s)
+      description: e.g. net10.0, net10.0-windows, net10.0-android, net9.0
+    validations:
+      required: false
   - type: input
     id: operating-system
     attributes:
       label: Operating system
-      description: Windows, Linux, Mac OS...
+      description: Windows, Linux, macOS, Android, iOS, ...
     validations:
       required: false
   - type: input
     id: system-version
     attributes:
-      label: Version
+      label: OS version
       description: Version and distribution (if applicable)
     validations:
       required: false
@@ -83,20 +108,20 @@ body:
     id: device
     attributes:
       label: Device
-      description: Device e.g. iPhone 6
+      description: e.g. iPhone 17, Pixel 10
     validations:
       required: false
   - type: input
     id: reactiveui-version
     attributes:
-      label: ReactiveUI Version
-      description: e.g. 15.1.1
+      label: ReactiveUI version
+      description: e.g. 23.2.19
     validations:
-      required: false
+      required: true
   - type: textarea
     id: additional-information
     attributes:
       label: Additional information ℹ️
-      description: Add any other information about the problem here.
+      description: Any other context about the problem.
     validations:
       required: false
