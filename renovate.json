@@ -24,9 +24,9 @@
       "groupName": "GitHub Actions"
     },
     {
-      "description": "Do NOT pin digests for trusted first-party GitHub Actions (actions/*, github/*); CodeQL exempts these as verified/immutable, so only 3rd-party actions get SHA-pinned",
+      "description": "Do NOT pin digests for first-party actions (actions/*, github/*) or our own org's actions/reusable workflows (reactiveui/*). CodeQL exempts the first two as verified/immutable; reactiveui/* reusable workflows are intentionally pinned to @main so every repo picks up shared-workflow changes immediately. Only genuine 3rd-party actions get SHA-pinned.",
       "matchManagers": ["github-actions"],
-      "matchPackagePatterns": ["^actions/", "^github/"],
+      "matchPackagePatterns": ["^actions/", "^github/", "^reactiveui/"],
       "pinDigests": false
     },
     {
