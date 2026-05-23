@@ -19,9 +19,15 @@
 
   "packageRules": [
     {
-      "description": "Group GitHub Actions updates (digest re-pins keep the # vX comment, e.g. NuGet/login, dessant/lock-threads, actions/*)",
+      "description": "Group GitHub Actions updates (digest re-pins keep the # vX comment, e.g. NuGet/login, dessant/lock-threads)",
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions"
+    },
+    {
+      "description": "Do NOT pin digests for trusted first-party GitHub Actions (actions/*, github/*); CodeQL exempts these as verified/immutable, so only 3rd-party actions get SHA-pinned",
+      "matchManagers": ["github-actions"],
+      "matchPackagePatterns": ["^actions/", "^github/"],
+      "pinDigests": false
     },
     {
       "description": "Group Xamarin & AndroidX NuGets",
