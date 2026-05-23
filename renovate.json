@@ -5,6 +5,7 @@
     ":separateMajorReleases",
     ":combinePatchMinorReleases",
     ":enableVulnerabilityAlertsWithLabel(security)",
+    "helpers:pinGitHubActionDigests",
     "group:dotnetMonorepo",
     "group:nugetMonorepo"
   ],
@@ -17,6 +18,11 @@
   "labels": ["Dependency Management"],
 
   "packageRules": [
+    {
+      "description": "Group GitHub Actions updates (digest re-pins keep the # vX comment, e.g. NuGet/login, dessant/lock-threads, actions/*)",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    },
     {
       "description": "Group Xamarin & AndroidX NuGets",
       "matchManagers": ["nuget"],
