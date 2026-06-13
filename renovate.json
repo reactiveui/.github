@@ -201,6 +201,13 @@
       ],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "description": "Keep Roslyn (Microsoft.CodeAnalysis.*) on its current major band. The compiler API and the analyzers move on independent major lines that are pinned to the toolchain in use, so block cross-major bumps; within-major patch/minor updates still flow.",
+      "matchManagers": ["nuget"],
+      "matchPackagePatterns": ["^Microsoft\\.CodeAnalysis(\\.|$)"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ]
 }
