@@ -191,6 +191,16 @@
         "^mkdocs(\\.|$|-)",
         "^pymdown-extensions$"
       ]
+    },
+    {
+      "description": "ASP.NET Core & MAUI are multi-targeted per .NET major (one PackageVersion per major, selected by IsTargetFrameworkCompatible bands) so each entry stays matched to its TFM. Block cross-major bumps that would collapse those entries onto a single version; within-major patch/minor updates still flow.",
+      "matchManagers": ["nuget"],
+      "matchPackagePatterns": [
+        "^Microsoft\\.AspNetCore\\.",
+        "^Microsoft\\.Maui(\\.|$)"
+      ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ]
 }
