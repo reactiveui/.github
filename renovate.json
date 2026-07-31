@@ -26,188 +26,175 @@
     {
       "description": "Do NOT pin digests for first-party / trusted-publisher actions (actions/*, github/*, microsoft/*) or our own org's actions/reusable workflows (reactiveui/*). CodeQL treats those publishers as verified; reactiveui/* reusable workflows are intentionally pinned to @main so every repo picks up shared-workflow changes immediately. Only genuine 3rd-party actions get SHA-pinned.",
       "matchManagers": ["github-actions"],
-      "matchPackagePatterns": ["^actions/", "^github/", "^microsoft/", "^reactiveui/"],
+      "matchPackageNames": ["/^actions//", "/^github//", "/^microsoft//", "/^reactiveui//"],
       "pinDigests": false
     },
     {
-      "description": "Group Xamarin & AndroidX NuGets",
+      "description": "Group the Android binding libraries, which are versioned and released together. These two prefixes are the only Xamarin-prefixed packages still consumed (ReactiveUI.AndroidX, ReactiveUI.Validation.AndroidX); the Xamarin.Forms-era Xamarin.Android.Support.* line is gone.",
       "matchManagers": ["nuget"],
-      "matchPackagePatterns": [
-        "^Xamarin\\.",
-        "^Xamarin\\.AndroidX\\.",
-        "^Xamarin\\.Android\\.Support\\."
-      ],
-      "groupName": "Xamarin & AndroidX"
+      "groupName": "AndroidX",
+      "matchPackageNames": ["/^Xamarin\\.AndroidX\\./", "/^Xamarin\\.Google\\./"]
     },
-{
+    {
       "description": "Group Reactive Extensions (Rx.NET) packages",
       "matchManagers": ["nuget"],
       "groupName": "Rx.NET (System.Reactive)",
-      "matchPackagePatterns": [
-        "^System\\.Reactive(\\.|$)",
-        "^Microsoft\\.Reactive\\.",
-        "^System\\.Interactive(\\.|$)",
-        "^System\\.Linq\\.Async(\\.|$)"
+      "matchPackageNames": [
+        "/^System\\.Reactive(\\.|$)/",
+        "/^Microsoft\\.Reactive\\./",
+        "/^System\\.Interactive(\\.|$)/",
+        "/^System\\.Linq\\.Async(\\.|$)/"
       ]
     },
     {
       "description": "Group .NET test frameworks (xUnit + NUnit + Test SDK)",
       "matchManagers": ["nuget"],
-      "matchPackagePatterns": [
-        "^xunit(\\.|$)",
-        "^NUnit",
-        "^Verify\\.",
-        "^Microsoft\\.NET\\.Test\\.Sdk$",
-        "^coverlet\\."
-      ],
-      "groupName": ".NET test stack"
+      "groupName": ".NET test stack",
+      "matchPackageNames": [
+        "/^xunit(\\.|$)/",
+        "/^NUnit/",
+        "/^Verify\\./",
+        "/^Microsoft\\.NET\\.Test\\.Sdk$/",
+        "/^coverlet\\./"
+      ]
     },
     {
       "description": "Group Refit packages",
       "matchManagers": ["nuget"],
       "groupName": "Refit",
-      "matchPackagePatterns": ["^Refit(\\.|$)"]
+      "matchPackageNames": ["/^Refit(\\.|$)/"]
     },
     {
       "description": "Group ReactiveUI family",
       "matchManagers": ["nuget"],
       "groupName": "ReactiveUI",
-      "matchPackagePatterns": ["^ReactiveUI(\\.|$)"]
+      "matchPackageNames": ["/^ReactiveUI(\\.|$)/"]
     },
     {
       "description": "Group Avalonia UI ecosystem (incl. Avalonia.ReactiveUI)",
       "matchManagers": ["nuget"],
       "groupName": "Avalonia",
-      "matchPackagePatterns": ["^Avalonia(\\.|$)"]
+      "matchPackageNames": ["/^Avalonia(\\.|$)/"]
     },
     {
-      "description": "Group Uno Platform packages",
+      "description": "Group Uno Platform packages, including the Uno.Sdk entry under msbuild-sdks in global.json",
       "matchManagers": ["nuget"],
       "groupName": "Uno Platform",
-      "matchPackagePatterns": ["^Uno(\\.|$)"]
+      "matchPackageNames": ["/^Uno(\\.|$)/"]
     },
     {
       "description": "Group Splat packages",
       "matchManagers": ["nuget"],
       "groupName": "Splat",
-      "matchPackagePatterns": ["^Splat(\\.|$)"]
+      "matchPackageNames": ["/^Splat(\\.|$)/"]
     },
     {
       "description": "Group NuGet client libraries (NuGet/NuGet.Client family)",
       "matchManagers": ["nuget"],
       "groupName": "NuGet client",
-      "matchPackagePatterns": ["^NuGet\\."]
+      "matchPackageNames": ["/^NuGet\\./"]
     },
     {
       "description": "Group Microsoft.Extensions.* and Microsoft.Bcl.* (lockstep with .NET runtime cadence)",
       "matchManagers": ["nuget"],
       "groupName": "Microsoft.Extensions",
-      "matchPackagePatterns": [
-        "^Microsoft\\.Extensions\\.",
-        "^Microsoft\\.Bcl\\."
-      ]
+      "matchPackageNames": ["/^Microsoft\\.Extensions\\./", "/^Microsoft\\.Bcl\\./"]
     },
     {
       "description": "Group Microsoft.AspNetCore.* (lockstep via $(AspNetVersion))",
       "matchManagers": ["nuget"],
       "groupName": "ASP.NET Core",
-      "matchPackagePatterns": ["^Microsoft\\.AspNetCore\\."]
+      "matchPackageNames": ["/^Microsoft\\.AspNetCore\\./"]
     },
     {
       "description": "Group .NET MAUI packages (lockstep via $(MauiVersion))",
       "matchManagers": ["nuget"],
       "groupName": ".NET MAUI",
-      "matchPackagePatterns": ["^Microsoft\\.Maui(\\.|$)"]
+      "matchPackageNames": ["/^Microsoft\\.Maui(\\.|$)/"]
     },
     {
       "description": "Group Roslyn (Microsoft.CodeAnalysis.*) packages",
       "matchManagers": ["nuget"],
       "groupName": "Roslyn (Microsoft.CodeAnalysis)",
-      "matchPackagePatterns": ["^Microsoft\\.CodeAnalysis(\\.|$)"]
+      "matchPackageNames": ["/^Microsoft\\.CodeAnalysis(\\.|$)/"]
     },
     {
       "description": "Group Microsoft.Testing.Platform / Extensions (move together)",
       "matchManagers": ["nuget"],
       "groupName": "Microsoft.Testing",
-      "matchPackagePatterns": ["^Microsoft\\.Testing\\."]
+      "matchPackageNames": ["/^Microsoft\\.Testing\\./"]
     },
     {
       "description": "Group SourceLink providers",
       "matchManagers": ["nuget"],
       "groupName": "SourceLink",
-      "matchPackagePatterns": ["^Microsoft\\.SourceLink\\."]
+      "matchPackageNames": ["/^Microsoft\\.SourceLink\\./"]
     },
     {
       "description": "Group Microsoft App Center SDK",
       "matchManagers": ["nuget"],
       "groupName": "App Center",
-      "matchPackagePatterns": ["^Microsoft\\.AppCenter(\\.|$)"]
+      "matchPackageNames": ["/^Microsoft\\.AppCenter(\\.|$)/"]
     },
     {
       "description": "Group Akavache packages (lockstep release versions)",
       "matchManagers": ["nuget"],
       "groupName": "Akavache",
-      "matchPackagePatterns": ["^Akavache(\\.|$)"]
+      "matchPackageNames": ["/^Akavache(\\.|$)/"]
     },
     {
       "description": "Group SQLitePCLRaw bundles & providers",
       "matchManagers": ["nuget"],
       "groupName": "SQLitePCLRaw",
-      "matchPackagePatterns": ["^SQLitePCLRaw(\\.|$)"]
+      "matchPackageNames": ["/^SQLitePCLRaw(\\.|$)/"]
     },
     {
       "description": "Group Prism.* packages",
       "matchManagers": ["nuget"],
       "groupName": "Prism",
-      "matchPackagePatterns": ["^Prism(\\.|$)"]
+      "matchPackageNames": ["/^Prism(\\.|$)/"]
     },
     {
       "description": "Group TUnit packages",
       "matchManagers": ["nuget"],
       "groupName": "TUnit",
-      "matchPackagePatterns": ["^TUnit(\\.|$)"]
+      "matchPackageNames": ["/^TUnit(\\.|$)/"]
     },
     {
       "description": "Group Roslynator analyzers",
       "matchManagers": ["nuget"],
       "groupName": "Roslynator",
-      "matchPackagePatterns": ["^Roslynator(\\.|$)"]
+      "matchPackageNames": ["/^Roslynator(\\.|$)/"]
     },
     {
       "description": "Group Microsoft.Windows.* (WindowsAppSDK, SDK build tools, CsWinRT)",
       "matchManagers": ["nuget"],
       "groupName": "Microsoft.Windows",
-      "matchPackagePatterns": [
-        "^Microsoft\\.Windows\\.",
-        "^Microsoft\\.WindowsAppSDK$"
-      ]
+      "matchPackageNames": ["/^Microsoft\\.Windows\\./", "/^Microsoft\\.WindowsAppSDK$/"]
     },
     {
       "description": "Group Zensical / MkDocs ecosystem (pip)",
       "matchManagers": ["pip_requirements"],
       "groupName": "Zensical & MkDocs",
-      "matchPackagePatterns": [
-        "^zensical(\\.|$|-)",
-        "^mkdocs(\\.|$|-)",
-        "^pymdown-extensions$"
+      "matchPackageNames": [
+        "/^zensical(\\.|$|-)/",
+        "/^mkdocs(\\.|$|-)/",
+        "/^pymdown-extensions$/"
       ]
     },
     {
       "description": "ASP.NET Core & MAUI are multi-targeted per .NET major (one PackageVersion per major, selected by IsTargetFrameworkCompatible bands) so each entry stays matched to its TFM. Block cross-major bumps that would collapse those entries onto a single version; within-major patch/minor updates still flow.",
       "matchManagers": ["nuget"],
-      "matchPackagePatterns": [
-        "^Microsoft\\.AspNetCore\\.",
-        "^Microsoft\\.Maui(\\.|$)"
-      ],
       "matchUpdateTypes": ["major"],
-      "enabled": false
+      "enabled": false,
+      "matchPackageNames": ["/^Microsoft\\.AspNetCore\\./", "/^Microsoft\\.Maui(\\.|$)/"]
     },
     {
       "description": "Keep Roslyn (Microsoft.CodeAnalysis.*) on its current major band. The compiler API and the analyzers move on independent major lines that are pinned to the toolchain in use, so block cross-major bumps; within-major patch/minor updates still flow.",
       "matchManagers": ["nuget"],
-      "matchPackagePatterns": ["^Microsoft\\.CodeAnalysis(\\.|$)"],
       "matchUpdateTypes": ["major"],
-      "enabled": false
+      "enabled": false,
+      "matchPackageNames": ["/^Microsoft\\.CodeAnalysis(\\.|$)/"]
     }
   ]
 }
