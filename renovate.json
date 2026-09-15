@@ -24,10 +24,45 @@
       "groupName": "GitHub Actions"
     },
     {
-      "description": "Do NOT pin digests for first-party / trusted-publisher actions (actions/*, github/*, microsoft/*) or our own org's actions/reusable workflows (reactiveui/*). CodeQL treats those publishers as verified; reactiveui/* reusable workflows are intentionally pinned to @main so every repo picks up shared-workflow changes immediately. Only genuine 3rd-party actions get SHA-pinned.",
+      "description": "Pinning GitHub Actions names the group rather than the generic dependencies topic.",
       "matchManagers": ["github-actions"],
-      "matchPackageNames": ["/^actions//", "/^github//", "/^microsoft//", "/^reactiveui//"],
+      "matchUpdateTypes": ["pin", "pinDigest"],
+      "group": {
+        "commitMessageTopic": "GitHub Actions digests"
+      }
+    },
+    {
+      "description": "reactiveui/* actions and reusable workflows stay on @main so every repository picks up a shared change on its next run.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["/^reactiveui//"],
       "pinDigests": false
+    },
+    {
+      "description": "Actions from GitHub and Microsoft are pinned by digest and taken as soon as they are released.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["/^actions//", "/^github//", "/^microsoft//"],
+      "pinDigests": true,
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Minor, patch and digest updates to actions from GitHub and Microsoft merge automatically.",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["/^actions//", "/^github//", "/^microsoft//"],
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "automerge": true
+    },
+    {
+      "description": "Every Docker image is pinned by digest, and a new digest is taken as soon as it is pushed so image security fixes are not held back.",
+      "matchDatasources": ["docker"],
+      "pinDigests": true,
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Digest updates to Microsoft's, Docker's Dockerfile syntax and ReactiveUI's container images merge automatically.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["/^mcr\\.microsoft\\.com//", "/^ghcr\\.io/reactiveui//", "docker/dockerfile"],
+      "matchUpdateTypes": ["digest", "pin", "pinDigest"],
+      "automerge": true
     },
     {
       "description": "Group the Android binding libraries, which are versioned and released together. These two prefixes are the only Xamarin-prefixed packages still consumed (ReactiveUI.AndroidX, ReactiveUI.Validation.AndroidX); the Xamarin.Forms-era Xamarin.Android.Support.* line is gone.",
