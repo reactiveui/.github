@@ -1,23 +1,36 @@
-<!-- Please read our [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening a PR, and give this PR a title that follows [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `fix:`, `feat:`, `docs:`, `build:`). -->
+<!-- Read the [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening a PR. -->
+<!-- Give this PR a title that follows [Conventional Commits](https://www.conventionalcommits.org/), e.g. `fix: dispose the binding when the view detaches`. -->
+<!-- Fill in each section, and keep it in proportion: a one-line fix does not need six paragraphs. -->
 
-## What kind of change does this PR introduce?
-<!-- Bug fix, feature, docs update, refactor, ci, build, ... -->
+## Summary
+<!-- One or two sentences on what this PR changes, then one bullet per distinct change.
+     Write for someone who has not read the diff. Name the behaviour, type or API, not the files.
+     One or two sentences per bullet, no sub-bullets. Cover everything the branch does.
+     Describe the result, not the route you took to it. -->
 
-## What is the new behavior?
-<!-- The most important section: describe what this PR changes things TO. For a feature, explain the new functionality; for a fix, describe the corrected behavior. -->
+## Why
+<!-- The problem this solves. For a bug, say what went wrong and under what conditions.
+     Link the issue and write `Closes #123` so it closes on merge.
+     If there is no issue, say what prompted the change. -->
 
-## What is the current behavior?
-<!-- The OLD, pre-PR behavior on the target branch — i.e. what this PR changes away from. Link any related issue here and use "Closes #123" to auto-close it on merge. -->
+## Breaking changes
+<!-- Anything a consumer has to react to: removed or renamed public API, a changed default,
+     different timing or threading, a new dependency, a dropped target framework.
+     Say what breaks and what to write instead. Write "None" if nothing breaks. -->
 
-## What might this PR break?
-<!-- Call out any breaking changes, behavioural changes, or migration steps consumers need. Write "None" if there are none. -->
+## How this was verified
+<!-- The checks you ran and what they cover: the tests you added or updated, the target frameworks
+     and platforms you built and ran on, a benchmark result, a sample app you exercised.
+     "It builds" is not verification. Say plainly if something could not be tested here. -->
+
+## Notes for the reviewer
+<!-- Where to start reading, and what deserves the most attention.
+     Say which parts are mechanical and safe to skim, and which parts are subtle.
+     Flag any decision you were unsure about, and anything you left out of scope on purpose.
+     Screenshots, traces and links go here. -->
 
 ## Checklist
 - [ ] I have read the [Contribute guide](https://www.reactiveui.net/contribute/index.html)
-- [ ] Tests have been added or updated (for bug fixes / features)
-- [ ] Docs have been added or updated (for bug fixes / features)
-- [ ] Changes target the `main` branch
-- [ ] PR title follows [Conventional Commits](https://www.conventionalcommits.org/)
-
-## Additional information
-<!-- Screenshots, benchmarks, links, or anything else that helps reviewers. -->
+- [ ] The PR title follows [Conventional Commits](https://www.conventionalcommits.org/)
+- [ ] Tests cover this change, or the summary says why they do not
+- [ ] New or changed public API has XML documentation
