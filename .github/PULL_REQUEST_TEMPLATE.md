@@ -1,12 +1,14 @@
 <!-- Read the [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening a PR. -->
 <!-- Give this PR a title that follows [Conventional Commits](https://www.conventionalcommits.org/), e.g. `fix: dispose the binding when the view detaches`. -->
-<!-- Fill in each section, and keep it in proportion: a one-line fix does not need six paragraphs. -->
+<!-- Two people read this: the reviewer, and a user who followed a link here from the release notes.
+     Fill in each section and keep it in proportion. A new subsystem earns more bullets; it never
+     earns longer ones. A one-line fix earns one bullet. -->
 
 ## Summary
 <!-- One or two sentences on what this PR changes, then one bullet per distinct change.
      Write for someone who has not read the diff. Name the behaviour, type or API, not the files.
      One or two sentences per bullet, no sub-bullets. Cover everything the branch does.
-     Describe the result, not the route you took to it. -->
+     Describe the result, not the route you took to it, and not how it works inside. -->
 
 ## Why
 <!-- The problem this solves. For a bug, say what went wrong and under what conditions.
@@ -19,9 +21,11 @@
      Say what breaks and what to write instead. Write "None" if nothing breaks. -->
 
 ## How this was verified
-<!-- The checks you ran and what they cover: the tests you added or updated, the target frameworks
-     and platforms you built and ran on, a benchmark result, a sample app you exercised.
-     "It builds" is not verification. Say plainly if something could not be tested here. -->
+<!-- One or two lines. What the new tests cover, and anything you exercised by hand.
+     "Tests cover every class this adds" and "ran the sample app on Android and iOS" are complete answers.
+     Never list test counts, pass or fail results, individual test names, or which frameworks went
+     green. The checks tab reports all of that already.
+     Say plainly if something could not be tested here. -->
 
 ## Notes for the reviewer
 <!-- Where to start reading, and what deserves the most attention.
