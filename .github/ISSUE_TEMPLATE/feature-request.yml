@@ -1,0 +1,87 @@
+name: Feature request
+description: Propose new API or behaviour
+type: Feature
+labels: ["feature request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening a request. We cannot commit to a timeline, and priority goes to [Contributors](https://www.reactiveui.net/contribute/index.html) to the project.
+
+        If the idea is still forming, start a [discussion](https://github.com/reactiveui/ReactiveUI/discussions) instead. This form is for a proposal you can express as concrete API.
+
+        These libraries run on every .NET UI framework. Say so if your proposal only works on some of them.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you are trying to do, and where the current API gets in the way. Show the code you have to write today.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What you want to be able to do. Describe the behaviour, not how it would be implemented.
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API
+      description: The public surface you are asking for, and a short example of calling it. Names are placeholders; the shape is what matters. This is the fastest way to get a proposal reviewed.
+      placeholder: |
+        ```csharp
+        // new API
+        public static IObservable<T> ObserveOnMainThread<T>(this IObservable<T> source);
+        ```
+
+        ```csharp
+        // calling it
+        this.WhenAnyValue(x => x.SearchText)
+            .ObserveOnMainThread()
+            .BindTo(this, x => x.Results);
+        ```
+    validations:
+      required: true
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Where this applies
+      multiple: true
+      options:
+        - Every platform
+        - WPF
+        - WinUI / Windows App SDK
+        - Windows Forms
+        - Avalonia
+        - Uno Platform
+        - .NET MAUI
+        - Blazor
+        - Xamarin.Forms
+        - Xamarin.iOS / Xamarin.Android / Xamarin.Mac
+        - Mac Catalyst / AppKit
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Effect on existing code
+      description: Whether this changes or removes anything that exists today, and what a caller would have to do about it. Write "Nothing changes" if it is purely additive.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you have considered
+      description: Other API shapes, existing workarounds, or why an extension method in your own project is not enough.
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a pull request for this.
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Prior art in other libraries, related issues, links, or diagrams.

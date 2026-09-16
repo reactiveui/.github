@@ -2,10 +2,13 @@ blank_issues_enabled: false
 contact_links:
   - name: Contribute guide
     url: https://www.reactiveui.net/contribute/index.html
-    about: Please read this before opening an issue or PR.
-  - name: Questions & Discussions
+    about: Read this before opening an issue or a pull request.
+  - name: Documentation
+    url: https://www.reactiveui.net/documentation/
+    about: Guides and API reference for ReactiveUI and its companion libraries.
+  - name: Questions and discussions
     url: https://github.com/reactiveui/ReactiveUI/discussions
-    about: For general questions about ReactiveUI, ask in GitHub Discussions.
+    about: Ask how to do something, or float an idea before writing a proposal.
   - name: Chat
-    url: https://www.reactiveui.net/slack
-    about: Our Slack chat community invite.
+    url: https://www.reactiveui.net/Slack/
+    about: Our Slack community invite.

@@ -1,127 +1,151 @@
-name: Bug Report
-description: Create a report to help us improve
-title: "[Bug]: "
+name: Bug report
+description: Report a problem with one of our libraries
+type: Bug
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to file a bug report. Please read our [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening an issue. Although we can't commit to a timeline, priority is given to [Contributors](https://www.reactiveui.net/contribute/index.html) to the project.
+        Please read the [Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening an issue. We cannot commit to a timeline, and priority goes to [Contributors](https://www.reactiveui.net/contribute/index.html) to the project.
+
+        A bug we can run is a bug we can fix. The reproduction is the part of this form that decides how fast that happens.
   - type: checkboxes
     id: prerequisites
     attributes:
       label: Prerequisites
-      description: Please confirm the following before opening an issue.
       options:
-        - label: I have searched [open](https://github.com/reactiveui/ReactiveUI/issues) and [closed](https://github.com/reactiveui/ReactiveUI/issues?q=is%3Aissue+is%3Aclosed) issues for duplicates.
+        - label: I have searched this repository's open and closed issues for duplicates.
           required: true
         - label: I am using the latest stable release.
           required: true
   - type: textarea
     id: description
     attributes:
-      label: Describe the bug 🐞
-      description: A clear and concise description of what the bug is.
+      label: What happens
+      description: What goes wrong, and when. Quote the exact error message if there is one.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: |
+        Give us one of these, best first:
+
+        - A link to a small public repository or gist that fails when we run it.
+        - A complete, self-contained code sample we can paste into a new project and run.
+
+        Minimal means you removed everything that is not needed to make it fail: no app shell, no dependency injection, no third-party packages unless one of them is the problem. A snippet with `...` in the middle is not something we can run.
+
+        Without a reproduction an issue gets a `needs-repro` label, and is closed if nothing arrives. If you cannot reduce it, say what you tried and what stopped you.
+      placeholder: |
+        https://github.com/your-username/my-repro
+
+        or a runnable sample:
+
+        ```csharp
+        public class MainViewModel : ReactiveObject
+        {
+        }
+        ```
     validations:
       required: true
   - type: textarea
     id: reproduce-steps
     attributes:
       label: Steps to reproduce
-      description: Steps to reproduce the behavior.
+      description: What to do with the reproduction above to see the failure. If running it is enough, say so.
       value: |
-        1. Go to '...'
-        2. Click on '...'
-        3. Scroll down to '...'
-        4. See error
+        1.
+        2.
+        3.
     validations:
       required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Exception and stack trace
+      description: Paste the full text rather than a screenshot, so it turns up in searches.
+      render: text
   - type: input
-    id: reproduce-repository
+    id: package-version
     attributes:
-      label: Reproduction repository
-      description: A minimal repository that reproduces the bug.
-      placeholder: https://github.com/your-username/repro
-    validations:
-      required: false
-  - type: textarea
-    id: expected-behavior
-    attributes:
-      label: Expected behavior
-      description: A clear and concise description of what you expected to happen.
+      label: Package and version
+      description: The package that misbehaves and its exact version, for example `ReactiveUI 23.2.19`, `Splat 16.1.1`, `Akavache 11.1.1`.
     validations:
       required: true
-  - type: textarea
-    id: screenshots
-    attributes:
-      label: Screenshots 🖼️
-      description: If applicable, add screenshots or recordings to help explain your problem.
-    validations:
-      required: false
   - type: dropdown
-    id: ide
+    id: ui-framework
     attributes:
-      label: IDE
+      label: UI framework
       multiple: true
       options:
-        - Visual Studio 2026
-        - Visual Studio 2022
-        - JetBrains Rider
-        - Visual Studio Code
-        - Cursor
+        - WPF
+        - WinUI / Windows App SDK
+        - Windows Forms
+        - Avalonia
+        - Uno Platform
+        - .NET MAUI
+        - Blazor
+        - Xamarin.Forms
+        - Xamarin.iOS / Xamarin.Android / Xamarin.Mac
+        - Mac Catalyst / AppKit
+        - None, this is a class library or console app
         - Other
+    validations:
+      required: true
   - type: dropdown
-    id: dotnet-version
+    id: operating-system
     attributes:
-      label: .NET version
+      label: Operating system
       multiple: true
       options:
-        - .NET 10
-        - .NET 9
-        - .NET Framework 4.8.1
-        - .NET Framework 4.8
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS / iPadOS
+        - tvOS
+        - WebAssembly / browser
+        - Tizen
         - Other
     validations:
       required: true
   - type: input
     id: target-framework
     attributes:
-      label: Target framework(s)
-      description: e.g. net10.0, net10.0-windows, net10.0-android, net9.0
+      label: Target framework
+      description: The exact moniker you build, for example `net10.0-windows10.0.19041.0`, `net10.0-android`, `net9.0`, `net472`.
     validations:
-      required: false
-  - type: input
-    id: operating-system
-    attributes:
-      label: Operating system
-      description: Windows, Linux, macOS, Android, iOS, ...
-    validations:
-      required: false
-  - type: input
-    id: system-version
-    attributes:
-      label: OS version
-      description: Version and distribution (if applicable)
-    validations:
-      required: false
+      required: true
   - type: input
     id: device
     attributes:
-      label: Device
-      description: e.g. iPhone 17, Pixel 10
-    validations:
-      required: false
+      label: Device and OS version
+      description: Fill this in when the failure is device-specific, for example `Pixel 10, Android 16`, `iPhone 17 simulator, iOS 26`, `Windows 11 24H2`.
   - type: input
-    id: reactiveui-version
+    id: ide
     attributes:
-      label: ReactiveUI version
-      description: e.g. 23.2.19
-    validations:
-      required: true
+      label: IDE
+      description: Name and version, for example `Visual Studio 2026 18.0`, `Rider 2026.2`, `VS Code 1.105`.
+  - type: input
+    id: regression
+    attributes:
+      label: Did this work in an earlier version?
+      description: The last version you know worked. Say so if you have not checked.
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Anything you found that avoids the problem.
   - type: textarea
     id: additional-information
     attributes:
-      label: Additional information ℹ️
-      description: Any other context about the problem.
-    validations:
-      required: false
+      label: Additional information
+      description: Screenshots, recordings, related issues, or a pointer to where you think the problem is.
