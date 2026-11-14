@@ -218,11 +218,17 @@
       ]
     },
     {
-      "description": "ASP.NET Core & MAUI are multi-targeted per .NET major (one PackageVersion per major, selected by IsTargetFrameworkCompatible bands) so each entry stays matched to its TFM. Block cross-major bumps that would collapse those entries onto a single version; within-major patch/minor updates still flow.",
+      "description": "ASP.NET Core, MAUI, Microsoft.Extensions, Microsoft.Bcl and the runtime System.* packages are versioned per .NET major (one PackageVersion per major, selected by IsTargetFrameworkCompatible Choose blocks) so each entry stays matched to its TFM. Block cross-major bumps that would collapse those entries onto a single version; within-major patch/minor updates still flow.",
       "matchManagers": ["nuget"],
       "matchUpdateTypes": ["major"],
       "enabled": false,
-      "matchPackageNames": ["/^Microsoft\\.AspNetCore\\./", "/^Microsoft\\.Maui(\\.|$)/"]
+      "matchPackageNames": [
+        "/^Microsoft\\.AspNetCore\\./",
+        "/^Microsoft\\.Maui(\\.|$)/",
+        "/^Microsoft\\.Extensions\\./",
+        "/^Microsoft\\.Bcl\\./",
+        "/^System\\.(Text\\.Json|Collections\\.Immutable|Threading\\.Channels|Net\\.Http\\.Json|Net\\.ServerSentEvents|Runtime\\.Serialization\\.Formatters)$/"
+      ]
     },
     {
       "description": "Keep Roslyn (Microsoft.CodeAnalysis.*) on its current major band. The compiler API and the analyzers move on independent major lines that are pinned to the toolchain in use, so block cross-major bumps; within-major patch/minor updates still flow.",

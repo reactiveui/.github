@@ -121,7 +121,7 @@ body:
     id: target-framework
     attributes:
       label: Target framework
-      description: The exact moniker you build, for example `net10.0-windows10.0.19041.0`, `net10.0-android`, `net9.0`, `net472`.
+      description: The exact moniker you build, for example `net10.0-windows10.0.19041.0`, `net10.0-android`, `net11.0`, `net472`.
     validations:
       required: true
   - type: input
