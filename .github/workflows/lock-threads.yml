@@ -15,14 +15,10 @@ concurrency:
 
 jobs:
   lock:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: dessant/lock-threads@89ae32b08ed1a541efecbab17912962a5e38981c # v6
-        with:
-          issue-inactive-days: '90'
-          pr-inactive-days: '90'
-          issue-lock-reason: 'resolved'
-          pr-lock-reason: 'resolved'
-          exclude-issue-created-before: ''
-          exclude-any-issue-labels: 'help-wanted'
-          add-issue-labels: 'outdated'
+    uses: reactiveui/actions-common/.github/workflows/workflow-common-lock-threads.yml@main
+    with:
+      inactiveDays: 90
+      lockReason: resolved
+      excludeIssueLabel: help-wanted
+      addIssueLabel: outdated
+      postComment: false
