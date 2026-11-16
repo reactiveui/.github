@@ -28,7 +28,7 @@ An unversioned directive uses central package management, so keep its version in
 `Directory.Packages.props`.
 
 The NuGet manager also handles project files, central package versions,
-`VersionOverride`, .NET tool manifests and `global.json`. The GitHub Actions manager
+`VersionOverride`, project SDK versions and .NET tool manifests. The GitHub Actions manager
 handles action references and `actions/setup-dotnet` version inputs.
 
 For a tool version stored in an action or workflow input default, add an annotation:

@@ -144,7 +144,7 @@
       "matchPackageNames": ["/^Avalonia(\\.|$)/", "MessageBox.Avalonia"]
     },
     {
-      "description": "Group Uno Platform packages, including the Uno.Sdk entry under msbuild-sdks in global.json",
+      "description": "Group Uno Platform packages and project SDK versions",
       "matchManagers": ["nuget"],
       "groupName": "Uno Platform",
       "matchPackageNames": ["/^Uno(\\.|$)/"]
