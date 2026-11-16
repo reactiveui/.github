@@ -51,6 +51,13 @@
 
   "packageRules": [
     {
+      "description": "Update versioned MSBuild SDK declarations in project and build files through NuGet.",
+      "matchManagers": ["nuget"],
+      "matchDepTypes": ["msbuild-sdk"],
+      "enabled": true,
+      "rangeStrategy": "bump"
+    },
+    {
       "description": "Group GitHub Actions updates (digest re-pins keep the # vX comment, e.g. NuGet/login, dessant/lock-threads)",
       "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions"

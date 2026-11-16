@@ -28,8 +28,13 @@ An unversioned directive uses central package management, so keep its version in
 `Directory.Packages.props`.
 
 The NuGet manager also handles project files, central package versions,
-`VersionOverride`, project SDK versions and .NET tool manifests. The GitHub Actions manager
-handles action references and `actions/setup-dotnet` version inputs.
+`VersionOverride` and .NET tool manifests. The preset explicitly enables updates
+for versioned MSBuild SDK declarations, including `<Project Sdk="Uno.Sdk/7.0.22">`,
+`<Sdk Name="Uno.Sdk" Version="7.0.22" />` and versioned `<Import Sdk="...">`
+elements. Uno SDK updates join the Uno Platform package group.
+
+The GitHub Actions manager handles action references and `actions/setup-dotnet`
+version inputs.
 
 For a tool version stored in an action or workflow input default, add an annotation:
 
