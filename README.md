@@ -12,6 +12,46 @@ This repository provides:
 
 GitHub falls back to these files for any repository in the org that does not provide its own. See the [GitHub docs on default community health files](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file) for details.
 
+## Renovate
+
+Use the shared preset in your repository's Renovate configuration:
+
+```json
+{
+  "extends": ["local>reactiveui/.github:renovate"]
+}
+```
+
+The preset enables the NuGet manager for `.cs` files. Renovate can update versioned
+`#:package` and `#:sdk` directives in apps run with `dotnet run --file`.
+An unversioned directive uses central package management, so keep its version in
+`Directory.Packages.props`.
+
+The NuGet manager also handles project files, central package versions,
+`VersionOverride`, .NET tool manifests and `global.json`. The GitHub Actions manager
+handles action references and `actions/setup-dotnet` version inputs.
+
+For a tool version stored in an action or workflow input default, add an annotation:
+
+```yaml
+safesign-version:
+  # renovate: datasource=nuget depName=SafeSign
+  default: '2.1.0'
+```
+
+The preset also tracks annotated `_VERSION` values in workflow environment variables
+and Dockerfile `ARG` or `ENV` instructions. Windows App Runtime input defaults keep
+the `major.minor` format used by the installer.
+
+Shared rules group related analyzers, build tools, test tools, adapters and package
+families. Runtime packages stay in their .NET 10 or .NET 11 major band. Renovate uses
+its default stable-release policy. Keep repository-specific compatibility pins in
+that repository's configuration. Local rules apply after the shared rules.
+
+See Renovate's [NuGet manager](https://docs.renovatebot.com/modules/manager/nuget/),
+[custom manager presets](https://docs.renovatebot.com/presets-customManagers/) and
+[configuration options](https://docs.renovatebot.com/configuration-options/).
+
 ## Contributing
 
 Please read the [ReactiveUI Contribute guide](https://www.reactiveui.net/contribute/index.html) before opening an issue or PR.

@@ -6,6 +6,8 @@
     ":combinePatchMinorReleases",
     ":enableVulnerabilityAlertsWithLabel(security)",
     "helpers:pinGitHubActionDigests",
+    "customManagers:dockerfileVersions",
+    "customManagers:githubActionsVersions",
     "group:dotnetMonorepo",
     "group:nugetMonorepo"
   ],
@@ -16,6 +18,36 @@
 
   "recreateWhen": "never",
   "labels": ["Dependency Management"],
+
+  "nuget": {
+    "managerFilePatterns": ["/\\.cs$/"],
+    "rangeStrategy": "bump"
+  },
+
+  "customManagers": [
+    {
+      "description": "Track annotated action and workflow input defaults with full package versions.",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)\\.github/(?:actions|workflows)/.+\\.ya?ml$/",
+        "/(^|/)action\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-zA-Z0-9-._]+) depName=(?<depName>[^\\s]+)(?: (?:lookupName|packageName)=(?<packageName>[^\\s]+))?(?: versioning=(?<versioning>[^\\s]+))?(?: extractVersion=(?<extractVersion>[^\\s]+))?(?: registryUrl=(?<registryUrl>[^\\s]+))?\\s+default:[ \\t]*[\"']?(?<currentValue>v?\\d+\\.\\d+\\.\\d+(?:[-+][a-zA-Z0-9.-]+)?)[\"']?[ \\t]*(?:\\r?\\n|$)"
+      ]
+    },
+    {
+      "description": "Windows App Runtime inputs use the major.minor of a stable Microsoft.WindowsAppSDK release.",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)\\.github/(?:actions|workflows)/.+\\.ya?ml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>nuget) depName=(?<depName>Microsoft\\.WindowsAppSDK)\\s+default:[ \\t]*[\"'](?<currentValue>\\d+\\.\\d+)[\"']"
+      ],
+      "extractVersionTemplate": "^(?<version>\\d+\\.\\d+)\\.\\d+$"
+    }
+  ],
 
   "packageRules": [
     {
@@ -109,7 +141,7 @@
       "description": "Group Avalonia UI ecosystem (incl. Avalonia.ReactiveUI)",
       "matchManagers": ["nuget"],
       "groupName": "Avalonia",
-      "matchPackageNames": ["/^Avalonia(\\.|$)/"]
+      "matchPackageNames": ["/^Avalonia(\\.|$)/", "MessageBox.Avalonia"]
     },
     {
       "description": "Group Uno Platform packages, including the Uno.Sdk entry under msbuild-sdks in global.json",
@@ -160,10 +192,10 @@
       "matchPackageNames": ["/^Microsoft\\.Testing\\./"]
     },
     {
-      "description": "Group SourceLink providers",
+      "description": "Update package versioning and SourceLink tools together.",
       "matchManagers": ["nuget"],
-      "groupName": "SourceLink",
-      "matchPackageNames": ["/^Microsoft\\.SourceLink\\./"]
+      "groupName": "build tooling",
+      "matchPackageNames": ["MinVer", "/^Microsoft\\.SourceLink\\./"]
     },
     {
       "description": "Group Microsoft App Center SDK",
@@ -178,10 +210,10 @@
       "matchPackageNames": ["/^Akavache(\\.|$)/"]
     },
     {
-      "description": "Group SQLitePCLRaw bundles & providers",
+      "description": "Update SQLitePCLRaw and SQLite3MC bundles and providers together.",
       "matchManagers": ["nuget"],
       "groupName": "SQLitePCLRaw",
-      "matchPackageNames": ["/^SQLitePCLRaw(\\.|$)/"]
+      "matchPackageNames": ["/^SQLitePCLRaw(\\.|$)/", "/^SQLite3MC\\./"]
     },
     {
       "description": "Group Prism.* packages",
@@ -190,16 +222,23 @@
       "matchPackageNames": ["/^Prism(\\.|$)/"]
     },
     {
-      "description": "Group TUnit packages",
+      "description": "Update TUnit and its Verify integration together.",
       "matchManagers": ["nuget"],
       "groupName": "TUnit",
-      "matchPackageNames": ["/^TUnit(\\.|$)/"]
+      "matchPackageNames": ["/^TUnit(\\.|$)/", "Verify.TUnit"]
     },
     {
-      "description": "Group Roslynator analyzers",
+      "description": "Update build analyzers together for the warnings-as-errors check.",
       "matchManagers": ["nuget"],
-      "groupName": "Roslynator",
-      "matchPackageNames": ["/^Roslynator(\\.|$)/"]
+      "groupName": "analyzers",
+      "matchPackageNames": [
+        "/^Roslynator(\\.|$)/",
+        "/^SonarAnalyzer\\./",
+        "/^stylecop\\.analyzers$/i",
+        "/Sharp\\.Analyzers$/",
+        "Blazor.Common.Analyzers",
+        "/^Microsoft\\.CodeAnalysis\\.(Analyzers|(Public|Banned)ApiAnalyzers)$/"
+      ]
     },
     {
       "description": "Group Microsoft.Windows.* (WindowsAppSDK, SDK build tools, CsWinRT)",
@@ -218,6 +257,62 @@
       ]
     },
     {
+      "description": "Group benchmark tools.",
+      "matchManagers": ["nuget"],
+      "groupName": "test tooling",
+      "matchPackageNames": ["/^BenchmarkDotNet(\\.|$)/"]
+    },
+    {
+      "description": "Update the reference assemblies used by generator tests together.",
+      "matchManagers": ["nuget"],
+      "groupName": "reference assemblies",
+      "matchPackageNames": ["/^Basic\\.Reference\\.Assemblies(\\.|$)/"]
+    },
+    {
+      "description": "Update NuStreamDocs packages together.",
+      "matchManagers": ["nuget"],
+      "groupName": "NuStreamDocs",
+      "matchPackageNames": ["/^NuStreamDocs(\\.|$)/"]
+    },
+    {
+      "description": "Update Newtonsoft.Json and its BSON package together.",
+      "matchManagers": ["nuget"],
+      "groupName": "Newtonsoft.Json",
+      "matchPackageNames": ["/^Newtonsoft\\.Json(\\.|$)/"]
+    },
+    {
+      "description": "Group logging and telemetry backends used by adapters.",
+      "matchManagers": ["nuget"],
+      "groupName": "logging and telemetry backends",
+      "matchPackageNames": [
+        "/^Serilog(\\.|$)/",
+        "/^NLog(\\.|$)/",
+        "log4net",
+        "/^Exceptionless(\\.|$)/",
+        "/^Microsoft\\.ApplicationInsights(\\.|$)/",
+        "/^Mindscape\\.Raygun4Net(\\.|$)/",
+        "/^OpenTelemetry(\\.|$)/"
+      ]
+    },
+    {
+      "description": "Group dependency injection containers used by adapters.",
+      "matchManagers": ["nuget"],
+      "groupName": "DI containers",
+      "matchPackageNames": [
+        "/^Autofac(\\.|$)/",
+        "/^DryIoc(\\.|$)/",
+        "/^Ninject(\\.|$)/",
+        "/^SimpleInjector(\\.|$)/"
+      ]
+    },
+    {
+      "description": "Keep legacy System.* 4.x compatibility packages below version 5.",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["/^System\\./"],
+      "matchCurrentVersion": "/^4\\./",
+      "allowedVersions": "<5.0.0"
+    },
+    {
       "description": "ASP.NET Core, MAUI, Microsoft.Extensions, Microsoft.Bcl and the runtime System.* packages are versioned per .NET major (one PackageVersion per major, selected by IsTargetFrameworkCompatible Choose blocks) so each entry stays matched to its TFM. Block cross-major bumps that would collapse those entries onto a single version; within-major patch/minor updates still flow.",
       "matchManagers": ["nuget"],
       "matchUpdateTypes": ["major"],
@@ -227,8 +322,30 @@
         "/^Microsoft\\.Maui(\\.|$)/",
         "/^Microsoft\\.Extensions\\./",
         "/^Microsoft\\.Bcl\\./",
-        "/^System\\.(Text\\.Json|Collections\\.Immutable|Threading\\.Channels|Net\\.Http\\.Json|Net\\.ServerSentEvents|Runtime\\.Serialization\\.Formatters)$/"
+        "/^System\\.(Text\\.Json|Collections\\.Immutable|Threading\\.Channels|Net\\.Http\\.Json|Net\\.ServerSentEvents|Runtime\\.Serialization\\.Formatters|IO\\.Hashing|Security\\.Cryptography\\.Pkcs)$/"
       ]
+    },
+    {
+      "description": "Keep .NET 10 runtime package entries in the .NET 10 band.",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": [
+        "/^Microsoft\\.(AspNetCore|Extensions|Bcl)\\./",
+        "/^Microsoft\\.Maui(\\.|$)/",
+        "/^System\\.(Text\\.Json|Collections\\.Immutable|Threading\\.Channels|Net\\.Http\\.Json|Net\\.ServerSentEvents|Runtime\\.Serialization\\.Formatters|IO\\.Hashing|Security\\.Cryptography\\.Pkcs)$/"
+      ],
+      "matchCurrentVersion": "/^10\\./",
+      "allowedVersions": "/^10\\./"
+    },
+    {
+      "description": "Keep .NET 11 runtime package entries in the .NET 11 band.",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": [
+        "/^Microsoft\\.(AspNetCore|Extensions|Bcl)\\./",
+        "/^Microsoft\\.Maui(\\.|$)/",
+        "/^System\\.(Text\\.Json|Collections\\.Immutable|Threading\\.Channels|Net\\.Http\\.Json|Net\\.ServerSentEvents|Runtime\\.Serialization\\.Formatters|IO\\.Hashing|Security\\.Cryptography\\.Pkcs)$/"
+      ],
+      "matchCurrentVersion": "/^11\\./",
+      "allowedVersions": "/^11\\./"
     },
     {
       "description": "Keep Roslyn (Microsoft.CodeAnalysis.*) on its current major band. The compiler API and the analyzers move on independent major lines that are pinned to the toolchain in use, so block cross-major bumps; within-major patch/minor updates still flow.",
@@ -236,6 +353,13 @@
       "matchUpdateTypes": ["major"],
       "enabled": false,
       "matchPackageNames": ["/^Microsoft\\.CodeAnalysis(\\.|$)/"]
+    },
+    {
+      "description": "Roslyn authoring and API analyzers can update independently of the compiler API.",
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["/^Microsoft\\.CodeAnalysis\\.(Analyzers|(Public|Banned)ApiAnalyzers)$/"],
+      "matchUpdateTypes": ["major"],
+      "enabled": true
     }
   ]
 }
